@@ -20,10 +20,14 @@ public class SecurityApp {
 
                 // ObjectMessage msg = jmsContext.createObjectMessage(emp);
                 // jmsContext.createProducer().send(empTopic, emp);
-                jmsContext.setClientID("SecurityApp");
-                Employee emp = jmsContext.createDurableConsumer(empTopic,"subscribe 01").receiveBody(Employee.class);
+                // jmsContext.setClientID("SecurityApp");
+                // Employee emp = jmsContext.createDurableConsumer(empTopic,"subscribe 01").receiveBody(Employee.class);
+                 Employee emp = jmsContext.createConsumer(empTopic).receiveBody(Employee.class);
 
                 System.out.println("Security: received " + emp.getName() + " from topic");
+
+                // jmsContext.unsubscribe("subscribe 01");
+                // System.out.println("unsubscribe from topic");
 
                 
 
